@@ -6,15 +6,44 @@ import { useState, useEffect, useContext } from "react";
 
 export default function Freestyle() {
     const [screen, setScreen] = useContext(ScreenContext);
-    console.log(screen)
+    const [prompt, setPrompt] = useState('')
+    const [value, setValue] = useState('')
+    function handleSubmit(event) {
+        event.preventDefault();
+        // console.log('Submitted value:', value);
+        setPrompt(value)
+      }
+    
+      function handleChange(event) {
+        setValue(event.target.value);
+    }
+
+    useEffect(() => {loadContent()}, [])
+
+    function loadContent() {
+        return (
+            <div>
+                <p>Enter a prompt to load an image</p>
+                <form onSubmit={handleSubmit}>
+                    <label>
+                        Enter a value:
+                        <input type="text" value={value} onChange={handleChange} />
+                    </label>
+                    <button type="submit">Submit</button>
+                </form>
+                {prompt != '' ? 
+                    <OpenAI
+                        prompt={prompt}
+                    /> : null  
+                }
+            </div>
+    )}
+
     return (
         <div className="App">
         <header className="App-header">
             <button onClick={() => { setScreen("home") }}>Home</button>
-            <p>Loading image of a clown on a bike</p>
-            <OpenAI
-            prompt="clown on a bike"
-            />
+            {loadContent()}
         </header>
         </div>
     );
