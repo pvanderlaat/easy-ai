@@ -28,3 +28,5 @@ function getAdj(numCards){
     }
     return adjReturn
 }
+
+prompts = [['esta lista para']['me hizo']['le queda']['duerme']['llama mucho']['le gusta']['esta afuera y esta listo para']['esta intrado y esta listo para']['lo cree']['sigue']['esta intentando a']]
