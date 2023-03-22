@@ -6,43 +6,50 @@ import { useState, useEffect, useContext } from "react";
 import React from 'react';
 import Draggable from '../util/dnd/Draggable';
 import Droppable from '../util/dnd/Droppable'
-import {DndContext} from '@dnd-kit/core';
+import {DndContext, MultipleContainers} from '@dnd-kit/core';
+
 
 export default function MadLib() {
     const containers = ['A', 'B', 'C'];
-    const [parent, setParent] = useState(null);
-    const draggables = [
-      { id: 'drag-1', label: 'Draggable 1' },
-      { id: 'drag-2', label: 'Draggable 2' },
-      { id: 'drag-3', label: 'Draggable 3' },
-    ];
-  
-    return (
-      <DndContext onDragEnd={handleDragEnd}>
-        <h1>hello</h1>
-        {draggables.map((draggable) => (
-          <Draggable key={draggable.id} id={draggable.id}>
-            {draggable.label}
-          </Draggable>
-        ))}
-        {containers.map((id) => (
-          <Droppable key={id} id={id}>
-            {parent === id ? "Dropped!" : 'Drop here'}
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-          </Droppable>
-        ))}
-      </DndContext>
-    );
-  
-    function handleDragEnd(event) {
-      const {over} = event;
-      const itemId = event.active.id;
-  
-      // If the item is dropped over a container, set it as the parent
-      // otherwise reset the parent to `null`
-      setParent(over ? over.id : null);
+    const [draggables, setdraggables] = useState({
+        '0': null,
+        '1': null
+    });
+    var draggableList = []
+    for (var m in draggables){
+        draggableList.push(<Draggable id={m}>{m}</Draggable>)
     }
-  };
+
+    return (
+    <DndContext onDragEnd={handleDragEnd}>
+        {containers.map((id) => (
+            // We updated the Droppable component so it would accept an `id`
+            // prop and pass it to `useDroppable`
+            <Droppable key={id} id={id}>
+            {/* {draggables === id ? draggableMarkup : 'Drop here'} */}
+            </Droppable>
+        ))}
+
+        {
+            
+        }
+        {draggableList.map((draggable) => {
+            return draggables[draggable.props.id] === null ? draggable : null
+            {/* return draggables[draggable.id] === null ? draggable : null */}
+        })} 
+        {/* {draggables === null ? draggableMarkup : null} */}
+
+        
+    </DndContext>
+    );
+
+    function handleDragEnd(event) {
+    const {over} = event;
+    if (over) {
+        alert("over")
+        // If the item is dropped over a container, set it as the draggables
+        // otherwise reset the draggables to `null`
+        setdraggables(over ? over.id : null);
+    }
+    }
+    };
