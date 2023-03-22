@@ -1,8 +1,7 @@
-class History{
+export class History{
 
     // Constructor for recording the prompt and Image
     constructor(prompt, Image){
-
         this.prompt = prompt;
         this.Image = Image;
 
@@ -12,18 +11,19 @@ class History{
 const history = [];
 
 //function to save the prompt and Image for history
-function saveInput(prompt, Image){
+export function saveInput(prompt, Image){
     
     //create a history entry
     const entry = new History(prompt, Image);
 
     //add the entry to the history
-    history.append(entry);
+    history.push(entry)
     
+    console.log(history)
 }
 
 //function to get the history
-function getHistory(){
+export function getHistory(){
     return history;
 }
 

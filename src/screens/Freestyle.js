@@ -3,6 +3,7 @@ import OpenAI from '../util/openAI';
 import App from '../App';
 import {ScreenContext} from '../App';
 import { useState, useEffect, useContext } from "react";
+import { History, saveInput, getHistory } from '../util/History';
 
 export default function Freestyle() {
     const [screen, setScreen] = useContext(ScreenContext);
@@ -42,6 +43,13 @@ export default function Freestyle() {
     return (
         <div className="App">
         <header className="App-header">
+            <button onClick={() => {
+                console.log("history")
+                let history = getHistory()
+                history.map(el => {
+                    console.log(el)
+                })
+            }}>History</button>
             <button onClick={() => { setScreen("home") }}>Home</button>
             {loadContent()}
         </header>

@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
+import { saveInput } from "./History";
 const { Configuration, OpenAIApi } = require("openai");
 const orgToken = 'org-7zrAzjdS6q2Ha1JZdQ3v29ue'
-const apiKey = 'wrongs'
+const apiKey = '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'
 const configuration = new Configuration({
     organization: orgToken,
     apiKey: apiKey,
@@ -21,6 +22,7 @@ export default function OpenAI(props) {
             size: "1024x1024",
         });
         setimage(response.data.data[0].url);
+        saveInput(props.prompt, response.data.data[0].url)
     }
     useEffect(() => {
         getimage()
