@@ -10,6 +10,7 @@ import {DndContext, MultipleContainers} from '@dnd-kit/core';
 
 
 export default function Freestyle() {
+    const [screen, setScreen] = useContext(ScreenContext);
     const [prompt, setPrompt] = useState('')
     const [filled, setFilled] = useState({
         'Noun': null,
@@ -48,6 +49,16 @@ export default function Freestyle() {
     function render() {
         return (
             <DndContext onDragEnd={handleDragEnd}>
+                <button style={{
+                    position: 'absolute',
+                    left: '0',
+                    top: '0'
+                }} onClick={() => { setScreen("home") }}>Home</button>
+                <button style={{
+                    position: 'absolute',
+                    right: '0',
+                    top: '0'
+                }} onClick={() => { setScreen("History") }}>History</button>
                 <div
                     style={{
                         width: '90%',

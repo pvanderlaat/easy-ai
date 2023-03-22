@@ -10,6 +10,7 @@ import {DndContext, MultipleContainers} from '@dnd-kit/core';
 
 
 export default function MadLib() {
+    const [screen, setScreen] = useContext(ScreenContext);
     const [prompt, setPrompt] = useState('')
     const [filled, setFilled] = useState({
         'Noun': null,
@@ -17,6 +18,7 @@ export default function MadLib() {
         'Verb': null
     })
     const containers = ['Adjective', 'Noun', 'Verb'];
+    const madLibPrompt = [' man holding a ', ' while it is ']
     const [draggables, setdraggables] = useState({
         'car': [null, 'Noun'],
         'tree': [null, 'Noun'],
@@ -48,6 +50,16 @@ export default function MadLib() {
     function render() {
         return (
             <DndContext onDragEnd={handleDragEnd}>
+                <button style={{
+                    position: 'absolute',
+                    left: '0',
+                    top: '0'
+                }} onClick={() => { setScreen("home") }}>Home</button>
+                <button style={{
+                    position: 'absolute',
+                    right: '0',
+                    top: '0'
+                }} onClick={() => { setScreen("History") }}>History</button>
                 <div
                     style={{
                         width: '90%',
@@ -58,14 +70,14 @@ export default function MadLib() {
                         alignItems: 'center'
                     }}
                 >
+                    <h6 style={{display: 'flex', marginTop: '100px'}}>The </h6>
                     {containers.map((id) => (
-                            // We updated the Droppable component so it would accept an `id`
-                            // prop and pass it to `useDroppable`
                             <Droppable key={id} id={id}>
-                            <h3 style={{display: 'flex'}}>{id}</h3>
+                            <h6 style={{display: 'flex'}}>{id}</h6>
                             {draggableList.map((draggable) => {
                                 return draggables[draggable.props.id][0] === id ? draggable : null
                             })}
+                            <h6 style={{display: 'flex'}}>{madLibPrompt[0]}</h6>
                             </Droppable>
                     ))}
                 </div>

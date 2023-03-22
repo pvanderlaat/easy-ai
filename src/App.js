@@ -1,6 +1,7 @@
 import './App.css';
 import Freestyle from './screens/Freestyle';
 import MadLib from './screens/MadLib';
+import HistoryScr from './screens/HistoryScr';
 import { useState, useEffect, createContext } from "react";
 
 export const ScreenContext = createContext();
@@ -31,6 +32,9 @@ export default function App() {
     }
     else if (screen == 'MadLib') {
       return <MadLib/>
+    }
+    else if (screen == 'History') {
+      return <HistoryScr/>
     }
   }
 
