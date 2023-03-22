@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { saveInput } from "./History";
 const { Configuration, OpenAIApi } = require("openai");
 const orgToken = 'org-7zrAzjdS6q2Ha1JZdQ3v29ue'
-const apiKey = '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'
+const apiKey = 'wrong key'
 const configuration = new Configuration({
     organization: orgToken,
     apiKey: apiKey,
@@ -31,7 +31,8 @@ export default function OpenAI(props) {
         <img 
         src={image}
         style={{
-            width:'50vw'
+            width:'20vw',
+            marginTop: '100px'
         }}
         />
     )

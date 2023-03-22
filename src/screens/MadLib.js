@@ -10,12 +10,13 @@ import {DndContext, MultipleContainers} from '@dnd-kit/core';
 
 
 export default function MadLib() {
+    const [prompt, setPrompt] = useState('')
     const [filled, setFilled] = useState({
         'Noun': null,
         'Adjective': null,
         'Verb': null
     })
-    const containers = ['Noun', 'Adjective', 'Verb'];
+    const containers = ['Adjective', 'Noun', 'Verb'];
     const [draggables, setdraggables] = useState({
         'car': [null, 'Noun'],
         'tree': [null, 'Noun'],
@@ -50,8 +51,8 @@ export default function MadLib() {
                 <div
                     style={{
                         width: '90%',
-                        height: '30vh',
-                        backgroundColor: 'gray',
+                        height: '5vh',
+                        // backgroundColor: 'gray',
                         display: 'flex',
                         justifyContent: 'space-around',
                         alignItems: 'center'
@@ -61,36 +62,41 @@ export default function MadLib() {
                             // We updated the Droppable component so it would accept an `id`
                             // prop and pass it to `useDroppable`
                             <Droppable key={id} id={id}>
-                            <h1 style={{display: 'flex'}}>{id}</h1>
+                            <h3 style={{display: 'flex'}}>{id}</h3>
                             {draggableList.map((draggable) => {
                                 return draggables[draggable.props.id][0] === id ? draggable : null
                             })}
                             </Droppable>
                     ))}
                 </div>
-                <br></br><br></br><br></br>
+                {prompt != '' ? 
+                    <OpenAI
+                        prompt={prompt}
+                    /> : null  
+                }
+                <br></br><br></br>
                 <div
                     style={{
                         width: '90%',
                         height: '30vh',
-                        backgroundColor: 'gray',
+                        // backgroundColor: 'gray',
                         display: 'flex',
                         justifyContent: 'space-around',
                         alignItems: 'center'
                     }}
                 >
-                    {/* Render the nouns */}
-                    <div style={{display: 'flex', flexDirection: 'column'}}>
-                        Nouns
-                        {draggableList.map((draggable) => {
-                            return draggables[draggable.props.id][0] === null && draggables[draggable.props.id][1] === 'Noun' ? draggable : null
-                        })} 
-                    </div>
                     {/* Render the adjectives */}
                     <div style={{display: 'flex', flexDirection: 'column'}}>
                         Adjectives
                         {draggableList.map((draggable) => {
                             return draggables[draggable.props.id][0] === null && draggables[draggable.props.id][1] === 'Adjective' ? draggable : null
+                        })} 
+                    </div>
+                    {/* Render the nouns */}
+                    <div style={{display: 'flex', flexDirection: 'column'}}>
+                        Nouns
+                        {draggableList.map((draggable) => {
+                            return draggables[draggable.props.id][0] === null && draggables[draggable.props.id][1] === 'Noun' ? draggable : null
                         })} 
                     </div>
                     {/* Render the verbs */}
@@ -101,8 +107,16 @@ export default function MadLib() {
                         })} 
                     </div>
                 </div>
-
-                
+                <button onClick={() => {
+                    if (filled['Adjective'] == null || filled['Noun'] == null || filled['Adjective'] == null) {
+                        alert("ERROR. Please fill in all the boxes")
+                    }
+                    else {
+                        setPrompt("a " + filled['Adjective'] + " " + filled['Noun'] + " " + filled['Verb'])
+                    }
+                }}>
+                    Submit
+                </button>
             </DndContext>
         )
     }
