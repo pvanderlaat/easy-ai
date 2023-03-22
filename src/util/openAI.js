@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 const { Configuration, OpenAIApi } = require("openai");
 const orgToken = 'org-7zrAzjdS6q2Ha1JZdQ3v29ue'
-const apiKey = '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'
+const apiKey = 'wrongs'
 const configuration = new Configuration({
     organization: orgToken,
     apiKey: apiKey,

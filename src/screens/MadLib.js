@@ -3,48 +3,46 @@ import OpenAI from '../util/openAI';
 import App from '../App';
 import {ScreenContext} from '../App';
 import { useState, useEffect, useContext } from "react";
+import React from 'react';
+import Draggable from '../util/dnd/Draggable';
+import Droppable from '../util/dnd/Droppable'
+import {DndContext} from '@dnd-kit/core';
 
 export default function MadLib() {
-    const [screen, setScreen] = useContext(ScreenContext);
-    const [prompt, setPrompt] = useState('')
-    const [value, setValue] = useState('')
-    function handleSubmit(event) {
-        event.preventDefault();
-        // console.log('Submitted value:', value);
-        setPrompt(value)
-      }
-    
-      function handleChange(event) {
-        setValue(event.target.value);
-    }
-
-    useEffect(() => {loadContent()}, [])
-
-    function loadContent() {
-        return (
-            <div>
-                <p>Enter a prompt to load an image</p>
-                <form onSubmit={handleSubmit}>
-                    <label>
-                        Enter a value:
-                        <input type="text" value={value} onChange={handleChange} />
-                    </label>
-                    <button type="submit">Submit</button>
-                </form>
-                {prompt != '' ? 
-                    <OpenAI
-                        prompt={prompt}
-                    /> : null  
-                }
-            </div>
-    )}
-
+    const containers = ['A', 'B', 'C'];
+    const [parent, setParent] = useState(null);
+    const draggables = [
+      { id: 'drag-1', label: 'Draggable 1' },
+      { id: 'drag-2', label: 'Draggable 2' },
+      { id: 'drag-3', label: 'Draggable 3' },
+    ];
+  
     return (
-        <div className="App">
-        <header className="App-header">
-            <button onClick={() => { setScreen("home") }}>Home</button>
-            {loadContent()}
-        </header>
-        </div>
+      <DndContext onDragEnd={handleDragEnd}>
+        <h1>hello</h1>
+        {draggables.map((draggable) => (
+          <Draggable key={draggable.id} id={draggable.id}>
+            {draggable.label}
+          </Draggable>
+        ))}
+        {containers.map((id) => (
+          <Droppable key={id} id={id}>
+            {parent === id ? "Dropped!" : 'Drop here'}
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+          </Droppable>
+        ))}
+      </DndContext>
     );
-}
+  
+    function handleDragEnd(event) {
+      const {over} = event;
+      const itemId = event.active.id;
+  
+      // If the item is dropped over a container, set it as the parent
+      // otherwise reset the parent to `null`
+      setParent(over ? over.id : null);
+    }
+  };
