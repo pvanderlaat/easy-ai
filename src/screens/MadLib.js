@@ -70,8 +70,8 @@ export default function MadLib() {
                         alignItems: 'center'
                     }}
                 >
-                    <h6 style={{display: 'flex', marginTop: '100px'}}>The </h6>
-                    {containers.map((id) => (
+                    <h6>The </h6>
+                    {/* {containers.map((id) => (
                             <Droppable key={id} id={id}>
                             <h6 style={{display: 'flex'}}>{id}</h6>
                             {draggableList.map((draggable) => {
@@ -79,7 +79,46 @@ export default function MadLib() {
                             })}
                             <h6 style={{display: 'flex'}}>{madLibPrompt[0]}</h6>
                             </Droppable>
-                    ))}
+                    ))} */}
+                    <Droppable key={'Adjective'} id={'Adjective'}>
+                        <h6 style={{display: 'flex', color: 'yellow'}}>{'Adjective'}</h6>
+                        {draggableList.map((draggable) => {
+                            return draggables[draggable.props.id][0] === 'Adjective' ?
+                                <div style={{
+                                    marginTop: '-100px'
+                                }}>
+                                    {draggable}
+                                </div>
+                            : null
+                        })}
+                    </Droppable>
+                    <h6 style={{display: 'flex'}}>{madLibPrompt[0]}</h6>
+                    <Droppable key={'Noun'} id={'Noun'}>
+                        <h6 style={{display: 'flex', color: 'yellow'}}>{'Noun'}</h6>
+                        {draggableList.map((draggable) => {
+                            return draggables[draggable.props.id][0] === 'Noun' ? 
+                            <div style={{
+                                    marginTop: '-100px'
+                                }}>
+                                    {draggable}
+                            </div>
+                            : null
+                        })}
+                    </Droppable>
+                    <h6 style={{display: 'flex'}}>{madLibPrompt[1]}</h6>
+                    <Droppable key={'Verb'} id={'Verb'}>
+                        <h6 style={{display: 'flex', color: 'yellow'}}>{'Verb'}</h6>
+                        {draggableList.map((draggable) => {
+                            return draggables[draggable.props.id][0] === 'Verb' ? 
+                            <div style={{
+                                marginTop: '-100px'
+                            }}>
+                                {draggable}
+                            </div>
+                            : null
+                        })}
+                    </Droppable>
+                    <h6 style={{display: 'flex'}}>{madLibPrompt[2]}</h6>
                 </div>
                 {prompt != '' ? 
                     <OpenAI

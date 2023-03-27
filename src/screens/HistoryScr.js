@@ -7,17 +7,30 @@ import React from 'react';
 import Draggable from '../util/dnd/Draggable';
 import Droppable from '../util/dnd/Droppable'
 import {DndContext, MultipleContainers} from '@dnd-kit/core';
+import { getHistory } from '../util/History';
 
 
 export default function HistoryScr() {
     const [screen, setScreen] = useContext(ScreenContext);
+    const history = getHistory()
+    console.log(history)
     function render() {
         return (
-            <button style={{
-                position: 'absolute',
-                left: '0',
-                top: '0'
-            }} onClick={() => { setScreen("home") }}>Home</button>
+            <div>
+                <button style={{
+                    position: 'absolute',
+                    left: '0',
+                    top: '0'
+                }} onClick={() => { setScreen("home") }}>Home</button>
+                <h1>{history[0].prompt}</h1>
+                <img 
+                    src={history[0].Image}
+                    style={{
+                        width:'20vw',
+                        marginTop: '100px'
+                    }}
+                />
+            </div>
         )
     }
 
