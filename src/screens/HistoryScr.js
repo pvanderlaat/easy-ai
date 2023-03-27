@@ -27,7 +27,21 @@ export default function HistoryScr() {
                     <div key = {index}>
                         <h1>{item.prompt}</h1>
                         <img
-                            src={item.Image}
+                            src={item.Image[0]}
+                            style={{
+                                width:'20vw',
+                                marginTop: '100px'
+                            }}
+                        />
+                        <img
+                            src={item.Image[1]}
+                            style={{
+                                width:'20vw',
+                                marginTop: '100px'
+                            }}
+                        />
+                        <img
+                            src={item.Image[2]}
                             style={{
                                 width:'20vw',
                                 marginTop: '100px'
