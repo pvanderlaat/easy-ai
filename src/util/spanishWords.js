@@ -29,4 +29,4 @@ function getAdj(numCards){
     return adjReturn
 }
 
-var prompts = [['esta lista para']['me hizo']['le queda']['duerme']['llama mucho']['le gusta']['esta afuera y esta listo para']['esta intrado y esta listo para']['sigue']['esta intentando a']]
+var prompts = [['esta lista para'], ['me hizo'], ['le queda'], ['duerme'], ['llama mucho'], ['le gusta'], ['esta afuera y esta listo para'], ['esta intrado y esta listo para'], ['sigue'], ['esta intentando a']]
