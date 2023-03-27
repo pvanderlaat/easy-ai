@@ -18,7 +18,7 @@ export default function MadLib() {
         'Verb': null
     })
     const containers = ['Adjective', 'Noun', 'Verb'];
-    const madLibPrompt = [' El hombre lleva un ', ' cuando esta ']
+    const madLibPrompt = ['hombre', 'lleva un ', ' cuando esta ']
     const [draggables, setdraggables] = useState({
         'carro': [null, 'Noun'], //car
         'arbol': [null, 'Noun'], //tree
@@ -70,7 +70,7 @@ export default function MadLib() {
                         alignItems: 'center'
                     }}
                 >
-                    <h6>A(n) </h6>
+                    <h6>Un(a)(os) </h6>
                     {/* {containers.map((id) => (
                             <Droppable key={id} id={id}>
                             <h6 style={{display: 'flex'}}>{id}</h6>
@@ -80,6 +80,7 @@ export default function MadLib() {
                             <h6 style={{display: 'flex'}}>{madLibPrompt[0]}</h6>
                             </Droppable>
                     ))} */}
+                    <h6 style={{display: 'flex'}}>{madLibPrompt[0]}</h6>
                     <Droppable key={'Adjective'} id={'Adjective'}>
                         <h6 style={{display: 'flex', color: 'yellow'}}>{'Adjective'}</h6>
                         {draggableList.map((draggable) => {
@@ -92,7 +93,7 @@ export default function MadLib() {
                             : null
                         })}
                     </Droppable>
-                    <h6 style={{display: 'flex'}}>{madLibPrompt[0]}</h6>
+                    <h6 style={{display: 'flex'}}>{madLibPrompt[1]}</h6>
                     <Droppable key={'Noun'} id={'Noun'}>
                         <h6 style={{display: 'flex', color: 'yellow'}}>{'Noun'}</h6>
                         {draggableList.map((draggable) => {
@@ -105,7 +106,7 @@ export default function MadLib() {
                             : null
                         })}
                     </Droppable>
-                    <h6 style={{display: 'flex'}}>{madLibPrompt[1]}</h6>
+                    <h6 style={{display: 'flex'}}>{madLibPrompt[2]}</h6>
                     <Droppable key={'Verb'} id={'Verb'}>
                         <h6 style={{display: 'flex', color: 'yellow'}}>{'Verb'}</h6>
                         {draggableList.map((draggable) => {
@@ -162,7 +163,7 @@ export default function MadLib() {
                         alert("ERROR. Please fill in all the boxes")
                     }
                     else {
-                        setPrompt("A(n) " + filled['Adjective'] + " " + madLibPrompt[0] + " " + filled['Noun'] + " " + madLibPrompt[1] + " " + filled['Verb'])
+                        setPrompt("Un(a)(os) " + madLibPrompt[0] + " " + filled['Adjective'] + " " + madLibPrompt[1] + " " + filled['Noun'] + " " + madLibPrompt[2] + " " + filled['Verb'])
                     }
                 }}>
                     Submit
