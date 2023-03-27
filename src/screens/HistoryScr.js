@@ -22,14 +22,19 @@ export default function HistoryScr() {
                     left: '0',
                     top: '0'
                 }} onClick={() => { setScreen("home") }}>Home</button>
-                <h1>{history[0].prompt}</h1>
-                <img 
-                    src={history[0].Image}
-                    style={{
-                        width:'20vw',
-                        marginTop: '100px'
-                    }}
-                />
+
+                {history.map((item,index) => (
+                    <div key = {index}>
+                        <h1>{item.prompt}</h1>
+                        <img
+                            src={item.Image}
+                            style={{
+                                width:'20vw',
+                                marginTop: '100px'
+                            }}
+                        />
+                    </div>
+                ))}
             </div>
         )
     }
