@@ -18,24 +18,24 @@ export default function MadLib() {
         'Verb': null
     })
     const containers = ['Adjective', 'Noun', 'Verb'];
-    const madLibPrompt = [' man holding a ', ' while it is ']
+    const madLibPrompt = [' El hombre lleva un ', ' cuando esta ']
     const [draggables, setdraggables] = useState({
-        'car': [null, 'Noun'],
-        'tree': [null, 'Noun'],
-        'bear': [null, 'Noun'],
-        'dog': [null, 'Noun'],
-        'cat': [null, 'Noun'],
-        'red': [null, 'Adjective'],
-        'sad': [null, 'Adjective'],
-        'blue': [null, 'Adjective'],
-        'tall': [null, 'Adjective'],
-        'shiny': [null, 'Adjective'],
-        'wet': [null, 'Adjective'],
-        'dancing': [null, 'Verb'],
-        'eating food': [null, 'Verb'],
-        'punching the air': [null, 'Verb'],
-        'pointing upwards': [null, 'Verb'],
-        'stretching': [null, 'Verb'],
+        'carro': [null, 'Noun'], //car
+        'arbol': [null, 'Noun'], //tree
+        'oso': [null, 'Noun'], //bear
+        'perro': [null, 'Noun'], //dog
+        'gato': [null, 'Noun'], //cat
+        'rojo': [null, 'Adjective'], //red
+        'triste': [null, 'Adjective'], //sad
+        'azul': [null, 'Adjective'], //blue
+        'alto': [null, 'Adjective'], //tall
+        'brillante': [null, 'Adjective'], //shiny
+        'mojado': [null, 'Adjective'], //wet
+        'bailando': [null, 'Verb'], //dancing
+        'comiendo': [null, 'Verb'], //eating food
+        'acostando': [null, 'Verb'], //resting
+        'corriendo': [null, 'Verb'], //running
+        'extensión': [null, 'Verb'], //stretching
     });
     const [draggableList, setDraggableList] = useState([]);
     useEffect(() => {
