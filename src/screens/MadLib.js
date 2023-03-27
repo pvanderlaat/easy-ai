@@ -70,7 +70,7 @@ export default function MadLib() {
                         alignItems: 'center'
                     }}
                 >
-                    <h6>The </h6>
+                    <h6>A(n) </h6>
                     {/* {containers.map((id) => (
                             <Droppable key={id} id={id}>
                             <h6 style={{display: 'flex'}}>{id}</h6>
@@ -118,7 +118,6 @@ export default function MadLib() {
                             : null
                         })}
                     </Droppable>
-                    <h6 style={{display: 'flex'}}>{madLibPrompt[2]}</h6>
                 </div>
                 {prompt != '' ? 
                     <OpenAI
@@ -163,7 +162,7 @@ export default function MadLib() {
                         alert("ERROR. Please fill in all the boxes")
                     }
                     else {
-                        setPrompt("a " + filled['Adjective'] + " " + filled['Noun'] + " " + filled['Verb'])
+                        setPrompt("A(n) " + filled['Adjective'] + " " + madLibPrompt[0] + " " + filled['Noun'] + " " + madLibPrompt[1] + " " + filled['Verb'])
                     }
                 }}>
                     Submit
