@@ -29,4 +29,15 @@ function getAdj(numCards){
     return adjReturn
 }
 
-var prompts = [['esta lista para'], ['me hizo'], ['le queda'], ['duerme'], ['llama mucho'], ['le gusta'], ['esta afuera y esta listo para'], ['esta intrado y esta listo para'], ['sigue'], ['esta intentando a']]
+function getPrompts(){
+
+    var promptReturn = []
+    
+    var tempPrompt = prompts[Math.floor(Math.random()*prompts.length)]
+    promptReturn.push(tempPrompt[i])
+
+    return promptReturn
+    
+}
+
+var prompts = [['hombre', 'lleva un ', 'cuando esta'], ['hombre', 'esta con el ', 'y esta'], ['senor', 'con el', 'le queda'], ['mujer','esta cuidando un', 'y esta'], ['edificio', 'tiene un(a)(os)', 'y esta'], ['mujeres', 'lleva un','y sigue'], ['edificio', 'esta afuera y tiene un', ' '], 'persona', 'esta contenta con el', 'y es']

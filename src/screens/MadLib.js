@@ -7,6 +7,7 @@ import React from 'react';
 import Draggable from '../util/dnd/Draggable';
 import Droppable from '../util/dnd/Droppable'
 import {DndContext, MultipleContainers} from '@dnd-kit/core';
+import {getPrompts} from '../util/spanishWords';
 
 
 export default function MadLib() {
@@ -17,8 +18,9 @@ export default function MadLib() {
         'Adjective': null,
         'Verb': null
     })
+    const tempPrompt = getPrompts();
     const containers = ['Adjective', 'Noun', 'Verb'];
-    const madLibPrompt = ['hombre', 'lleva un ', ' cuando esta ']
+    const madLibPrompt = [tempPrompt[0], tempPrompt[1], tempPrompt[2]]
     const [draggables, setdraggables] = useState({
         'carro': [null, 'Noun'], //car
         'arbol': [null, 'Noun'], //tree
