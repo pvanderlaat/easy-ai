@@ -130,11 +130,21 @@ export default function Freestyle() {
                     Generate New Word List
                 </button> */}
                 <button onClick={() => {
-                    if (filled['Adjective'] == null || filled['Noun'] == null || filled['Adjective'] == null) {
-                        alert("ERROR. Please fill in all the boxes")
+                    if (filled['Adjective'] == null && filled['Noun'] == null && filled['Verb'] == null) {
+                        alert("ERROR. Please fill in at least one of the boxes")
                     }
                     else {
-                        setPrompt(filled['Noun'] + " " + filled['Adjective'] + " "  + filled['Verb'])
+                        var promptString = ''
+                        if (filled['Noun']) {
+                            promptString += filled['Noun']
+                        }
+                        if (filled['Adjective']) {
+                            promptString += filled['Adjective']
+                        }
+                        if (filled['Verb']) {
+                            promptString += filled['Verb']
+                        }
+                        setPrompt(promptString)
                     }
                 }}>
                     Submit
