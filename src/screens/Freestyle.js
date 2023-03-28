@@ -7,7 +7,7 @@ import React from 'react';
 import Draggable from '../util/dnd/Draggable';
 import Droppable from '../util/dnd/Droppable'
 import {DndContext, MultipleContainers} from '@dnd-kit/core';
-import SpanishWords from '../util/spanishWords';
+import {SpanishWords, getNouns, getVerbs, getAdj} from '../util/spanishWords';
 
 
 export default function Freestyle() {
@@ -18,25 +18,26 @@ export default function Freestyle() {
         'Adjective': null,
         'Verb': null
     })
-    const containers = ['Adjective', 'Noun', 'Verb'];
+    const containers = ['Noun', 'Adjective', 'Verb'];
+    const [nouns, setNouns] = useState(getNouns(5))
+    const [adj, setAdj] = useState(getAdj(5))
+    const [verbs, setVerbs] = useState(getVerbs(5))
     const [draggables, setdraggables] = useState({
-        
-        'carro': [null, 'Noun'], //car
-        'arbol': [null, 'Noun'], //tree
-        'oso': [null, 'Noun'], //bear
-        'perro': [null, 'Noun'], //dog
-        'gato': [null, 'Noun'], //cat
-        'rojo': [null, 'Adjective'], //red
-        'triste': [null, 'Adjective'], //sad
-        'azul': [null, 'Adjective'], //blue
-        'alto': [null, 'Adjective'], //tall
-        'brillante': [null, 'Adjective'], //shiny
-        'mojado': [null, 'Adjective'], //wet
-        'bailando': [null, 'Verb'], //dancing
-        'comiendo': [null, 'Verb'], //eating food
-        'acostando': [null, 'Verb'], //laying down
-        'corriendo': [null, 'Verb'], //running
-        'extensión': [null, 'Verb'], //stretching
+        [nouns[0]]: [null, 'Noun'], //car
+        [nouns[1]]: [null, 'Noun'], //tree
+        [nouns[2]]: [null, 'Noun'], //bear
+        [nouns[3]]: [null, 'Noun'], //dog
+        [nouns[4]]: [null, 'Noun'], //cat
+        [adj[0]]: [null, 'Adjective'], //red
+        [adj[1]]: [null, 'Adjective'], //sad
+        [adj[2]]: [null, 'Adjective'], //blue
+        [adj[3]]: [null, 'Adjective'], //tall
+        [adj[4]]: [null, 'Adjective'], //shiny
+        [verbs[0]]: [null, 'Verb'], //dancing
+        [verbs[1]]: [null, 'Verb'], //eating food
+        [verbs[2]]: [null, 'Verb'], //laying down
+        [verbs[3]]: [null, 'Verb'], //running
+        [verbs[4]]: [null, 'Verb'], //stretching
     });
     const [draggableList, setDraggableList] = useState([]);
     useEffect(() => {
@@ -98,18 +99,18 @@ export default function Freestyle() {
                         alignItems: 'center'
                     }}
                 >
-                    {/* Render the adjectives */}
-                    <div style={{display: 'flex', flexDirection: 'column'}}>
-                        Adjectives
-                        {draggableList.map((draggable) => {
-                            return draggables[draggable.props.id][0] === null && draggables[draggable.props.id][1] === 'Adjective' ? draggable : null
-                        })} 
-                    </div>
                     {/* Render the nouns */}
                     <div style={{display: 'flex', flexDirection: 'column'}}>
                         Nouns
                         {draggableList.map((draggable) => {
                             return draggables[draggable.props.id][0] === null && draggables[draggable.props.id][1] === 'Noun' ? draggable : null
+                        })} 
+                    </div>
+                    {/* Render the adjectives */}
+                    <div style={{display: 'flex', flexDirection: 'column'}}>
+                        Adjectives
+                        {draggableList.map((draggable) => {
+                            return draggables[draggable.props.id][0] === null && draggables[draggable.props.id][1] === 'Adjective' ? draggable : null
                         })} 
                     </div>
                     {/* Render the verbs */}
@@ -120,12 +121,20 @@ export default function Freestyle() {
                         })} 
                     </div>
                 </div>
+                {/* <button onClick={() => {
+                    const newNouns = getNouns(5)
+                    setNouns(newNouns)
+                    setAdj(getAdj(5))
+                    setVerbs(getVerbs(5))
+                }}>
+                    Generate New Word List
+                </button> */}
                 <button onClick={() => {
                     if (filled['Adjective'] == null || filled['Noun'] == null || filled['Adjective'] == null) {
                         alert("ERROR. Please fill in all the boxes")
                     }
                     else {
-                        setPrompt("a " + filled['Adjective'] + " " + filled['Noun'] + " " + filled['Verb'])
+                        setPrompt(filled['Noun'] + " " + filled['Adjective'] + " "  + filled['Verb'])
                     }
                 }}>
                     Submit

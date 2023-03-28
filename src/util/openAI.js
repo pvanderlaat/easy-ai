@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { saveInput } from "./History";
 const { Configuration, OpenAIApi } = require("openai");
 const orgToken = 'org-7zrAzjdS6q2Ha1JZdQ3v29ue'
-const apiKey = 'wron'
+const apiKey = 'sk-wrong'
 const configuration = new Configuration({
     organization: orgToken,
     apiKey: apiKey,

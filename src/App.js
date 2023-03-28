@@ -15,6 +15,11 @@ export default function App() {
         <header className="App-header">
           <p>Home Screen</p>
           <div>
+            <button style={{
+                    position: 'absolute',
+                    right: '0',
+                    top: '0'
+                }} onClick={() => { setScreen("History") }}>History</button>
             <button onClick={() => setScreen("Freestyle")}>freestyle</button>
             <button onClick={() => setScreen("MadLib")}>mad-lib style</button>
           </div>

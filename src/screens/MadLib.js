@@ -18,7 +18,7 @@ export default function MadLib() {
         'Adjective': null,
         'Verb': null
     })
-    const tempPrompt = getPrompts();
+    const [tempPrompt, setTempPrompt] = useState(getPrompts())
     const containers = ['Adjective', 'Noun', 'Verb'];
     const madLibPrompt = [tempPrompt[0], tempPrompt[1], tempPrompt[2]]
     const [draggables, setdraggables] = useState({
@@ -82,7 +82,7 @@ export default function MadLib() {
                             <h6 style={{display: 'flex'}}>{madLibPrompt[0]}</h6>
                             </Droppable>
                     ))} */}
-                    <h6 style={{display: 'flex'}}>{madLibPrompt[0]}</h6>
+                    <h6 style={{display: 'flex'}}>{madLibPrompt[0][0]}</h6>
                     <Droppable key={'Adjective'} id={'Adjective'}>
                         <h6 style={{display: 'flex', color: 'yellow'}}>{'Adjective'}</h6>
                         {draggableList.map((draggable) => {
@@ -95,7 +95,7 @@ export default function MadLib() {
                             : null
                         })}
                     </Droppable>
-                    <h6 style={{display: 'flex'}}>{madLibPrompt[1]}</h6>
+                    <h6 style={{display: 'flex'}}>{madLibPrompt[0][1]}</h6>
                     <Droppable key={'Noun'} id={'Noun'}>
                         <h6 style={{display: 'flex', color: 'yellow'}}>{'Noun'}</h6>
                         {draggableList.map((draggable) => {
@@ -108,7 +108,7 @@ export default function MadLib() {
                             : null
                         })}
                     </Droppable>
-                    <h6 style={{display: 'flex'}}>{madLibPrompt[2]}</h6>
+                    <h6 style={{display: 'flex'}}>{madLibPrompt[0][2]}</h6>
                     <Droppable key={'Verb'} id={'Verb'}>
                         <h6 style={{display: 'flex', color: 'yellow'}}>{'Verb'}</h6>
                         {draggableList.map((draggable) => {
@@ -127,6 +127,9 @@ export default function MadLib() {
                         prompt={prompt}
                     /> : null  
                 }
+                <button onClick={() => {
+                    setTempPrompt(getPrompts())
+                }}>Generate New Prompt</button>
                 <br></br><br></br>
                 <div
                     style={{

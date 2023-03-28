@@ -2,7 +2,7 @@ var spanishNouns = [`la abeja`, `el barco`, `el conejo`, `el dinosaurio`, `el el
 var spanishVerbs = [`registrando`, `abanderar`, `abriendo`, , `acabar`, `aceptar`, `acordar`, `acostando`, `almorzando`, `amar`, `caminando`,'corriendo',  `aprendiendo`, `asistando`, `ayudando`, `bailando`, `bebiendo`, `buscando`, `cambiando`, `cantando`,  `cerrar`, `cocinando`, `cogiendo`, `comiendo`,  `comprentiendo`, `comprender`, `conducir`, `conociendo`, `conseguindo`, `construiendo`, `costando`, `creciendo`, `cruzando`, `cubriendo`,  `defendiendo`, `desayunando`, `descubriendo`,  `despertando`, `destruiendo`, `durmiendo`, `duchando`, `echando`, `encontrando`,  `escribiendo`,  `esperando`, `estudiando`,  `hablando`, `hacer`, `hackear`, `halagar`, `hartar`, `helar`, `henchir`, `herir`, `hervir`, `hinchar`, `hospedar`, `hostigar`, `huir`, `incluir`, `ir`, `jugando`, `lavando`, `leyendo`, `levantar`, `limpiando`, `llamamndo`, `llorando`, `manejando`, `nadando`, `pasando`, `perdiendo`, `practicando`, `protegiendo`, `quedar`, `quejar`, `querer`, `quitar`, `recibir`, `recoger`,`reíendo`, `rompiendo`, `saliendo`,  `sentando`,`sonando`, `sonreíendo`,  `tocando`, `tomando`, `trabajando`, `vendeiendo`, `vestiendo`, `viajando`, `visitando`, `viviendo`, `volando`]
 var spanishAdj = [`lindo`, `feo`, `feliz`, `triste`, `alto`, `bajo`, `grande`, `pequeño`, `simple`, `complicado`, `divertido`, `aburrido`, `rico`, `pobre`, `delicioso`, `repugnante`, `inteligente`, `tonto`, `nuevo`, `viejo`, `abierto`, `cerrado`, `cansado`, `despierto`, `caluroso`, `frío`, `caro`, `barato`, `rápido`, `lento`, `loco`, `tranquilo`, `fuerte`, `débil`, `enfermo`, `sano`, `dulce`, `salado`, `limpio`, `sucio`, `seco`, `mojado`, `injusto`, `justo`, `vacío`, `lleno`, `delgado`, `gordo`, `bueno`, `malo`]
 
-function getNouns(numCards){
+export function getNouns(numCards){
     var nounReturn = []
     for (let i = 0; i < numCards; i++){
         var tempNoun = spanishNouns[Math.floor(Math.random()*spanishNouns.length)]
@@ -11,7 +11,7 @@ function getNouns(numCards){
     return nounReturn
 }
 
-function getVerbs(numCards){
+export function getVerbs(numCards){
     var verbReturn = []
     for (let i = 0; i < numCards; i++){
         var tempVerb = spanishVerbs[Math.floor(Math.random()*spanishVerbs.length)]
@@ -20,7 +20,7 @@ function getVerbs(numCards){
     return verbReturn
 }
 
-function getAdj(numCards){
+export function getAdj(numCards){
     var adjReturn = []
     for (let i = 0; i < numCards; i++){
         var tempAdj = spanishAdj[Math.floor(Math.random()*spanishAdj.length)]
@@ -29,15 +29,15 @@ function getAdj(numCards){
     return adjReturn
 }
 
-function getPrompts(){
+export function getPrompts(){
 
     var promptReturn = []
     
     var tempPrompt = prompts[Math.floor(Math.random()*prompts.length)]
-    promptReturn.push(tempPrompt[i])
+    promptReturn.push(tempPrompt)
 
     return promptReturn
     
 }
 
-var prompts = [['hombre', 'lleva un ', 'cuando esta'], ['hombre', 'esta con el ', 'y esta'], ['senor', 'con el', 'le queda'], ['mujer','esta cuidando un', 'y esta'], ['edificio', 'tiene un(a)(os)', 'y esta'], ['mujeres', 'lleva un','y sigue'], ['edificio', 'esta afuera y tiene un', ' '], 'persona', 'esta contenta con el', 'y es']
+var prompts = [['hombre', 'lleva un ', 'cuando esta'], ['hombre', 'esta con el ', 'y esta'], ['senor', 'con el', 'le queda'], ['mujer','esta cuidando un', 'y esta'], ['edificio', 'tiene un(a)(os)', 'y esta'], ['mujeres', 'lleva un','y sigue'], ['edificio', 'esta afuera y tiene un', ' '], ['persona', 'esta contenta con el', 'y es']]
